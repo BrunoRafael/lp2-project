@@ -24,7 +24,7 @@ public class Email {
 	 * Regex pattern for the domain part validation.
 	 */
 	private static final String DOMAIN_REGEX =
-             "*[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+             "[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	
 	/**
 	 * Pattern object to hold local part pattern.
@@ -74,13 +74,17 @@ public class Email {
 	 * @param local See the wikipedia given link to check for valid local parts.
 	 */
 	public void setlocal(String local) {
-		try {
-			isValidLocal(local);
-			this.local = local;
-		} catch(Exception e) {
-			System.out.println(e.getMessage());
-			System.out.println("Local not set.");
+		if(local.length() < 65) {
+			try {
+				isValidLocal(local);
+				this.local = local;
+			} catch(Exception e) {
+				System.out.println(e.getMessage());
+				System.out.println("Local not set.");
+			}
 		}
+		else
+			System.out.println("Local part length must be less than 65 characters");
 	}
 	
 	/**
@@ -96,6 +100,7 @@ public class Email {
 	 * @param domain Check the wikipedia given link to check for valid domain parts. 
 	 */
 	public void setDomain(String domain) {
+		if(domain.length() < 256) {
 		try {
 			isValidDomain(domain);
 			this.domain = domain;
@@ -103,6 +108,9 @@ public class Email {
 			System.out.println(e.getMessage());
 			System.out.println("Domain not set.");
 		}
+		}
+		else
+			System.out.println("Domain part length must be less than 256 characters");
 	}
 	
 
