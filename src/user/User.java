@@ -39,6 +39,16 @@ public class User {
 	}
 	
 	/**
+	 * Auxiliar constructor to clone an User.
+	 * @param newUser User to be cloned.
+	 */
+	public User(User newUser) {
+		this.setPassword(newUser.getPassword());
+		this.setEmail(newUser.getEmail());
+		this.setBirthday(newUser.getBirthday());
+	}
+	
+	/**
 	 * 
 	 * @return Password object of the User instance.
 	 */
