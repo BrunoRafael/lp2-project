@@ -60,14 +60,20 @@ public class Password {
 	public SecretKey getKey() {
 		return key;
 	}
+	
 	public void setKey() throws NoSuchAlgorithmException {
 		this.key = KeyGenerator.getInstance("DES").generateKey();
 	}
+	
 	public String getEncryptedPass() {
 		return encryptedPass;
 	}
+	
 	public void setEncryptedPass(String encryptedPassword) {
 		this.encryptedPass = encryptedPassword;
 	}
 	
+	public static boolean comparePasswords(Password p1, String password) {
+		return p1.decrypt().equals(password);
+	}
 }
