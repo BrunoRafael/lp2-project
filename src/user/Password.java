@@ -46,9 +46,21 @@ public class Password {
 	 * @throws InvalidKeyException
 	 * @throws NoSuchPaddingException
 	 */
-	public Password(String pass) throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException {
-		this.setKey();
-		this.setupCipher();
+	public Password(String pass) {
+		try {
+			this.setKey();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		try {
+			this.setupCipher();
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			e.printStackTrace();
+		}
 		this.encrypt(pass);
 	}
 	
