@@ -14,6 +14,11 @@ public class Birthday {
 		return date;
 	}
 
+	@Override
+	public String toString() {
+		return "Birthday [date=" + date + "]";
+	}
+
 	public void setDate(int day, int month, int year) {
 		this.date = new GregorianCalendar(year, month, day);
 	}
