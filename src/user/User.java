@@ -6,7 +6,13 @@ public class User {
 	private Email email;
 	private Birthday birthday;
 	
-	
+	public User(String email, String password,
+			int day, int month, int year) {
+		this.setPassword(new Password(password));
+		this.setEmail(new Email(email));
+		this.setBirthday(new Birthday(day, month, year));
+
+	}
 	public Password getPassword() {
 		return password;
 	}
