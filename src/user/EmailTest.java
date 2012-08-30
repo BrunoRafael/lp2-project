@@ -1,9 +1,7 @@
 package user;
 
-import static org.junit.Assert.*;
 import junit.framework.TestCase;
 
-import org.junit.Before;
 import org.junit.Test;
 
 
@@ -12,7 +10,7 @@ public class EmailTest extends TestCase {
 	private String bigLocal;
 	private String bigDomain;
 	
-	private Email firstEmail, secondEmail, thirdEmail;
+	private Email firstEmail, secondEmail;
 	
 
 	public EmailTest() {
@@ -30,7 +28,7 @@ public class EmailTest extends TestCase {
 	public void testEmail() {
 		this.firstEmail = new Email("abcd", "fulano.com");
 		this.secondEmail = new Email(bigLocal, "fulano.com");
-		this.thirdEmail = new Email("abcd", bigDomain);
+		new Email("abcd", bigDomain);
 	}
 
 	@Test
