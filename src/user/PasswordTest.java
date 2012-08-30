@@ -16,7 +16,7 @@ public class PasswordTest extends TestCase {
 	private String firstPass = "root00";
 	
 	@Test
-	public void testPassword() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
+	public void testPassword() {
 		Password p = new Password(firstPass);
 		Password p1 = new Password("root11");
 		assertTrue(Password.comparePasswords(p, firstPass));
