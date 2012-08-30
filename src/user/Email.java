@@ -1,5 +1,8 @@
 package user;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Class representing an email such as 'abcd@zzz.com'.
  * 
@@ -7,6 +10,36 @@ package user;
  * @see http://en.wikipedia.org/wiki/Email_address
  */
 public class Email {
+	
+	/**
+	 * Regex pattern for local part validation.
+	 */
+	private static final String LOCAL_REGEX = 
+             "^[a-z0-9,!#\\" + 
+             "$%&'\\" + "*\\" +"+/=\\" + "?\\ " + "^_`\\" + "{\\" + 
+             "|}~-]+(\\" + ".[a-z0-9,!#\\" + "$%&'\\ " + 
+             "*\\" + " +/=\\" + "?\\" + "^_`\\" + "{\\" + "|}~-]+)*";
+	
+	/**
+	 * Regex pattern for the domain part validation.
+	 */
+	private static final String DOMAIN_REGEX =
+             "*[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
+	/**
+	 * Pattern object to hold local part pattern.
+	 */
+	private Pattern localPattern = Pattern.compile(LOCAL_REGEX);
+	
+	/**
+	 * Pattern object to hold domain part pattern.
+	 */
+	private Pattern domainPattern = Pattern.compile(DOMAIN_REGEX);
+	
+	/**
+	 * Matcher object to match patterns with locals and domains.
+	 */
+	private Matcher matcher;
 	
 	/**
 	 * Local part.
@@ -41,7 +74,13 @@ public class Email {
 	 * @param local See the wikipedia given link to check for valid local parts.
 	 */
 	public void setlocal(String local) {
-		this.local = local;
+		try {
+			isValidLocal(local);
+			this.local = local;
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("Local not set.");
+		}
 	}
 	
 	/**
@@ -57,7 +96,40 @@ public class Email {
 	 * @param domain Check the wikipedia given link to check for valid domain parts. 
 	 */
 	public void setDomain(String domain) {
-		this.domain = domain;
+		try {
+			isValidDomain(domain);
+			this.domain = domain;
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("Domain not set.");
+		}
+	}
+	
+
+	/**
+	 * Method to check if a given local part is valid.
+	 * @param local Local part to be tested.
+	 * @return true if its valid, false otherwise.
+	 */
+	private boolean isValidLocal(String local) throws Exception {
+		this.matcher = localPattern.matcher(local);
+		if(!this.matcher.matches())
+			throw new Exception("Invalid local part.");
+			
+		return true;
+	}
+
+	/**
+	 * Method to check if a given domain part is valid.
+	 * @param domain domain part to be tested.
+	 * @return true if its valid, false otherwise.
+	 */
+	private boolean isValidDomain(String domain) throws Exception {
+		this.matcher = domainPattern.matcher(domain);
+		if(!this.matcher.matches())
+			throw new Exception("Invalid domain part.");
+		
+		return true;
 	}
 	
 	@Override
