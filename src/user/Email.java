@@ -61,6 +61,14 @@ public class Email {
 		this.setlocal(local);
 	}
 	
+	public Email(String email) {
+		String[] splittedEmail = email.split("@");
+		if(splittedEmail.length == 2) {
+			this.setlocal(splittedEmail[0]);
+			this.setDomain(splittedEmail[1]);
+		}
+	}
+	
 	/**
 	 * 
 	 * @return The object local's part.
