@@ -1,15 +1,52 @@
 package music;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.TagException;
+
 public class Music {
-	
-	private static final char SEPARATOR = java.io.File.separatorChar;
-	
+
+	//	private static final char SEPARATOR = java.io.File.separatorChar;
+
 	private String name;
 	private String artist;
-	private String cd;
+	private String album;
 	private String path;
+	private String genre;
 	private int year;
-	private float duration;
+	private Number duration;
+
+	public Music(String path) throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException {
+		this.setPath(path);
+		File f = new File(path);
+		
+		AudioFile srcSet = AudioFileIO.read(f);
+		Tag tags = srcSet.getTag();
+
+
+		this.setArtist(tags.getFirst(FieldKey.ARTIST));
+		this.setAlbum(tags.getFirst(FieldKey.ALBUM));
+		this.setName(tags.getFirst(FieldKey.TITLE));
+		this.setYear(tags.getFirst(FieldKey.YEAR));
+		this.setGenre(tags.getFirst(FieldKey.GENRE));
+		this.setDuration(srcSet.getAudioHeader().getTrackLength());
+	}
+
+
+
+	
+	private void setYear(String year) {
+		this.year = new Integer(year);
+
+	}
 	
 	public String getName() {
 		return name;
@@ -27,12 +64,12 @@ public class Music {
 		this.artist = artist;
 	}
 	
-	public String getCd() {
-		return cd;
+	public String getAlbum() {
+		return album;
 	}
 	
-	public void setCd(String cd) {
-		this.cd = cd;
+	public void setAlbum(String album) {
+		this.album = album;
 	}
 	
 	public String getPath() {
@@ -43,20 +80,20 @@ public class Music {
 		this.path = path;
 	}
 	
-	public int getYear() {
-		return year;
+	public String getGenre() {
+		return genre;
 	}
 	
-	public void setYear(int year) {
-		this.year = year;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	
-	public float getDuration() {
+	public Number getDuration() {
 		return duration;
 	}
 	
-	public void setDuration(float duration) {
-		this.duration = duration;
+	public void setDuration(Number number) {
+		this.duration = number;
 	}
 	
 
