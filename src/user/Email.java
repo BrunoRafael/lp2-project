@@ -58,13 +58,13 @@ public class Email {
 	 */
 	public Email(String local, String domain) {
 		this.setDomain(domain);
-		this.setlocal(local);
+		this.setLocal(local);
 	}
 	
 	public Email(String email) {
 		String[] splittedEmail = email.split("@");
 		if(splittedEmail.length == 2) {
-			this.setlocal(splittedEmail[0]);
+			this.setLocal(splittedEmail[0]);
 			this.setDomain(splittedEmail[1]);
 		}
 	}
@@ -73,7 +73,7 @@ public class Email {
 	 * 
 	 * @return The object local's part.
 	 */
-	public String getlocal() {
+	public String getLocal() {
 		return local;
 	}
 	
@@ -81,7 +81,7 @@ public class Email {
 	 * @see http://en.wikipedia.org/wiki/Email_address#Local_part
 	 * @param local See the wikipedia given link to check for valid local parts.
 	 */
-	public void setlocal(String local) {
+	public void setLocal(String local) {
 		if(local.length() < 65) {
 			try {
 				isValidLocal(local);
@@ -171,17 +171,12 @@ public class Email {
 		if (getClass() != obj.getClass())
 			return false;
 		Email other = (Email) obj;
-		if (domain == null) {
-			if (other.domain != null)
-				return false;
-		} else if (!domain.equals(other.domain))
+		if(!(this.getLocal().equals(other.getLocal())))
 			return false;
-		if (local == null) {
-			if (other.local != null)
-				return false;
-		} else if (!local.equals(other.local))
+		else if(!this.getDomain().equals(other.getDomain()))
 			return false;
-		return true;
+		else
+			return true;
 	}
 	
 	/**
@@ -190,7 +185,7 @@ public class Email {
 	 */
 	@Override
 	public String toString() {
-		return "Email [local=" + this.getlocal() + 
+		return "Email [local=" + this.getLocal() + 
 			   ", domain=" + this.getDomain() + "]";
 	}
 
