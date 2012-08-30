@@ -32,17 +32,17 @@ public class EmailTest extends TestCase {
 	}
 
 	@Test
-	public void testGetlocal() {
+	public void testgetLocal() {
 		this.firstEmail = new Email("abcd", "fulano.com");
-		assertEquals(this.firstEmail.getlocal(), "abcd");
+		assertEquals(this.firstEmail.getLocal(), "abcd");
 		this.secondEmail = new Email(bigLocal, "fulano.com");
-		assertEquals(this.secondEmail.getlocal(), null);
+		assertEquals(this.secondEmail.getLocal(), null);
 	}
 
 	@Test
-	public void testSetlocal() {
+	public void testsetLocal() {
 		this.firstEmail = new Email("a.little.lengthy.but.fine", "dept.example.com");
-		this.firstEmail.setlocal("abc..3");
+		this.firstEmail.setLocal("abc..3");
 	}
 
 	@Test
