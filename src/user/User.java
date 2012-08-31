@@ -1,5 +1,7 @@
 package user;
 
+import social.Profile;
+
 /**
  * Class representing an user.
  * @author andreluiz
@@ -21,6 +23,8 @@ public class User {
 	 * Birthday object of the User instance.
 	 */
 	private Birthday birthday;
+	
+	private Profile profile;
 	
 	/**
 	 * Constructor of an User instance.
@@ -96,6 +100,14 @@ public class User {
 		this.birthday = birthday;
 	}
 	
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	@Override
 	public String toString() {
 		return "User [password=" + password + ", email=" + email
