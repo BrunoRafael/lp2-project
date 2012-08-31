@@ -53,4 +53,10 @@ public class PlaylistMusic extends Music {
 																		0;
 	}
 
+	@Override
+	public String toString() {
+		return "PlaylistMusic [qualification=" + qualification
+				+ ", toString()=" + super.toString() + "]";
+	}
+
 }
