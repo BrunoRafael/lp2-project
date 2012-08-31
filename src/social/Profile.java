@@ -114,4 +114,10 @@ public class Profile {
 		this.relationships = relationships;
 	}
 
+	@Override
+	public String toString() {
+		return "Profile [playlists=" + this.getPlaylists() + ", relationships="
+				+ this.getRelationships() + "]";
+	}
+
 }
