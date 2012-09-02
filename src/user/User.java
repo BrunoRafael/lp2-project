@@ -24,6 +24,9 @@ public class User {
 	 */
 	private Birthday birthday;
 	
+	/**
+	 * User's profile.
+	 */
 	private Profile profile;
 	
 	/**
@@ -39,6 +42,7 @@ public class User {
 		this.setPassword(new Password(password));
 		this.setEmail(new Email(email));
 		this.setBirthday(new Birthday(day, month, year));
+		this.setProfile(new Profile());
 
 	}
 	
@@ -50,6 +54,7 @@ public class User {
 		this.setPassword(newUser.getPassword());
 		this.setEmail(newUser.getEmail());
 		this.setBirthday(newUser.getBirthday());
+		this.setProfile(newUser.getProfile());
 	}
 	
 	/**
