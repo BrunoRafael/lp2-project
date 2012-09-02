@@ -205,7 +205,7 @@ public class PersistencyHandler {
 	
 	public void readUserBuffer() {
 		for(Email e: this.getUserBuffer().keySet())
-			System.out.println(e + " " + this.getUserBuffer().get(e));
+			System.out.println(this.getUserBuffer().get(e));
 	}
 
 }
