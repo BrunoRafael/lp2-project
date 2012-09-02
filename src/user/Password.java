@@ -155,6 +155,6 @@ public class Password {
 
 	@Override
 	public String toString() {
-		return "Password [encryptedPass=" + encryptedPass + "]";
+		return "[" + encryptedPass + "]";
 	}
 }
