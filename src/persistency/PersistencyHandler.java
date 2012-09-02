@@ -94,6 +94,22 @@ public class PersistencyHandler {
 		}
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadDb() {
+		try {
+			this.setMusicBuffer((HashMap<String, PersistentMusic>)
+								 this.getMusicDbIn().readObject());
+			this.setUserBuffer((HashMap<Email, PersistentUser>)
+								this.getUserDbIn().readObject());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void write(PersistentUser pu) {
 		this.getUserBuffer().put(pu.getEmail(), pu);
