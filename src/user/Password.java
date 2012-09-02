@@ -152,4 +152,9 @@ public class Password {
 	public static boolean comparePasswords(Password p1, String password) {
 		return p1.decrypt().equals(password);
 	}
+
+	@Override
+	public String toString() {
+		return "Password [encryptedPass=" + encryptedPass + "]";
+	}
 }
