@@ -85,4 +85,9 @@ public class Playlist {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Playlist [musics=" + this.getMusics().size() + ", name=" + name + "]";
+	}
+
 }
