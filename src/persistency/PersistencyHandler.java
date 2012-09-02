@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
+
+import user.Email;
 
 
 public class PersistencyHandler {
@@ -22,6 +25,9 @@ public class PersistencyHandler {
 	private FileInputStream musicFileIn;
 	private ObjectOutputStream musicDbOut;
 	private ObjectInputStream musicDbIn;
+	
+	private HashMap<Email, PersistentUser> userBuffer;
+	private HashMap<String, PersistentMusic> musicBuffer;
 	
 	protected PersistencyHandler() {
 		this.setUp();
@@ -78,9 +84,23 @@ public class PersistencyHandler {
 		}
 	}
 	
+	public void saveAll() {
+		try {
+			this.getuserDbOut().writeObject(this.getUserBuffer());
+			this.getMusicDbOut().writeObject(this.getMusicBuffer());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
-	public void write(PersistentUser pu) throws IOException {
-		this.getuserDbOut().writeObject(pu);
+	public void write(PersistentUser pu) {
+		this.getUserBuffer().put(pu.getEmail(), pu);
+	}
+	
+	public void write(PersistentMusic pm) {
+		this.getMusicBuffer().put(pm.getPath(), pm);
 	}
 	
 	public ObjectOutputStream getuserDbOut() {
@@ -145,6 +165,22 @@ public class PersistencyHandler {
 
 	public void setMusicDbIn(ObjectInputStream musicDbIn) {
 		this.musicDbIn = musicDbIn;
+	}
+
+	public HashMap<Email, PersistentUser> getUserBuffer() {
+		return userBuffer;
+	}
+
+	public void setUserBuffer(HashMap<Email, PersistentUser> userBuffer) {
+		this.userBuffer = userBuffer;
+	}
+
+	public HashMap<String, PersistentMusic> getMusicBuffer() {
+		return musicBuffer;
+	}
+
+	public void setMusicBuffer(HashMap<String, PersistentMusic> musicBuffer) {
+		this.musicBuffer = musicBuffer;
 	}
 
 
