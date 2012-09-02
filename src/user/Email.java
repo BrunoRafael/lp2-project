@@ -191,8 +191,8 @@ public class Email implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Email [local=" + this.getLocal() + 
-			   ", domain=" + this.getDomain() + "]";
+		return "Email [" + this.getLocal() + 
+			   "@" + this.getDomain() + "]";
 	}
 
 
