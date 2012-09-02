@@ -10,6 +10,10 @@ import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.tag.TagException;
 import org.junit.Test;
 
+import user.Email;
+import user.Password;
+import user.User;
+
 public class PersistencyHandlerTest {
 
 	@Test
@@ -39,6 +43,8 @@ public class PersistencyHandlerTest {
 		}
 		ph.readMusicBuffer();
 		ph.readUserBuffer();
+		User u = ph.getUserBuffer().get(new Email("andrelgsl@gmail.com"));
+		System.out.println(Password.comparePasswords(u.getPassword(), "1234"));
 		ph.saveAll();
 	}
 
