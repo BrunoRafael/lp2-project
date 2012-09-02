@@ -1,5 +1,6 @@
 package user;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,8 +10,13 @@ import java.util.regex.Pattern;
  * @author andreluiz
  * @see http://en.wikipedia.org/wiki/Email_address
  */
-public class Email {
+public class Email implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
+
 	/**
 	 * Regex pattern for local part validation.
 	 */
@@ -39,7 +45,7 @@ public class Email {
 	/**
 	 * Matcher object to match patterns with locals and domains.
 	 */
-	private Matcher matcher;
+	private transient Matcher matcher;
 	
 	/**
 	 * Local part.
