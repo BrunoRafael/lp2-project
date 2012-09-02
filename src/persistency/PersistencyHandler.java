@@ -33,7 +33,7 @@ public class PersistencyHandler {
 		this.setUp();
 	}
 	
-	static PersistencyHandler getInstance() {
+	public static PersistencyHandler getInstance() {
 		if(instance == null)
 			instance = new PersistencyHandler();
 		return instance;
