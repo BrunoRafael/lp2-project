@@ -115,8 +115,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [password=" + this.getPassword() + ", email=" + this.getEmail()
-				+ ", birthday=" + this.getBirthday() + " Profile=" + this.getProfile() + "]";
+		return "User [password=" + this.getPassword() + ", " + this.getEmail()
+				+ ", " + this.getBirthday() + " " + this.getProfile() + "]";
 	}
 
 	@Override
