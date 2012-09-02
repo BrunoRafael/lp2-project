@@ -34,7 +34,9 @@ public class Birthday {
 
 	@Override
 	public String toString() {
-		return "Birthday [date=" + date + "]";
+		return "Birthday [" + date.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+							  date.get(GregorianCalendar.MONTH) + "/"  +
+							  date.get(GregorianCalendar.YEAR) +"]";
 	}
 
 	/**
