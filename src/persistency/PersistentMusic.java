@@ -39,4 +39,14 @@ public class PersistentMusic extends Music implements Serializable {
 		super(path);
 	}
 
+	@Override
+	public String toString() {
+		return "PersistentMusic [getName()=" + getName() + ", getArtist()="
+				+ getArtist() + ", getAlbum()=" + getAlbum() + ", getPath()="
+				+ getPath() + ", getGenre()=" + getGenre() + ", getDuration()="
+				+ getDuration() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
 }
