@@ -1,9 +1,8 @@
 package persistency;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
@@ -21,9 +20,6 @@ public class PersistentUser extends User implements Serializable {
 	 * Value: 1
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private FileOutputStream userFile;
-	private ObjectOutputStream userDb;
 	
 	/**
 	 * Complete constructor of PersistentUser. This will create a User and persist it.
@@ -46,50 +42,5 @@ public class PersistentUser extends User implements Serializable {
 		super(newUser);
 	}
 
-	public void writeUser() throws IOException {
-		this.getUserDb().writeObject(this);
-	}
-	
-	public void writeUser(PersistentUser pu) throws IOException {
-		
-	}
-	
-	public void setUp() {
-		File tmp = null;
-		try{
-			tmp = new File("../res/users.data");
-			userFile = new FileOutputStream(tmp);
-		} catch (FileNotFoundException e) {
-			if(!tmp.exists())
-				try {
-					tmp.createNewFile();
-					userFile = new FileOutputStream(tmp);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-		}
-		
-		try {
-			setUserDb(new ObjectOutputStream(userFile));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	public ObjectOutputStream getUserDb() {
-		return userDb;
-	}
-
-	public void setUserDb(ObjectOutputStream userDb) {
-		this.userDb = userDb;
-	}
-
-	public FileOutputStream getUserFile() {
-		return userFile;
-	}
-
-	public void setUserFile(FileOutputStream userFile) {
-		this.userFile = userFile;
-	}
 }
