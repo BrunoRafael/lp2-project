@@ -33,7 +33,7 @@ public class PersistencyHandler {
 		this.setUp();
 	}
 	
-	public PersistencyHandler getInstance() {
+	static PersistencyHandler getInstance() {
 		if(instance == null)
 			instance = new PersistencyHandler();
 		return instance;
@@ -43,15 +43,12 @@ public class PersistencyHandler {
 		File tmpUser = null;
 		File tmpMusic = null;
 		try{
-			tmpUser = new File("../res/users.data");
-			tmpMusic = new File("../res/musics.data");
-			
+			tmpUser = new File("res/users.data");
+			tmpMusic = new File("res/musics.data");
 			this.setuserFileOut(new FileOutputStream(tmpUser));
 			this.setUserFileIn(new FileInputStream(tmpUser));
-			
 			this.setMusicFileOut(new FileOutputStream(tmpMusic));
 			this.setMusicFileIn(new FileInputStream(tmpMusic));
-
 			
 		} catch (FileNotFoundException e) {
 			if(!tmpUser.exists())
@@ -70,6 +67,9 @@ public class PersistencyHandler {
 				} catch (IOException e2) {
 					e.printStackTrace();
 				}
+		} catch (Exception eof) {
+			this.setMusicBuffer(new HashMap<String, PersistentMusic>());
+			this.setUserBuffer(new HashMap<Email, PersistentUser>());
 		}
 		
 		try {
@@ -79,7 +79,6 @@ public class PersistencyHandler {
 			setMusicDbOut(new ObjectOutputStream(this.getMusicFileOut()));
 			setMusicDbIn(new ObjectInputStream(this.getMusicFileIn()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -89,7 +88,6 @@ public class PersistencyHandler {
 			this.getuserDbOut().writeObject(this.getUserBuffer());
 			this.getMusicDbOut().writeObject(this.getMusicBuffer());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -103,11 +101,12 @@ public class PersistencyHandler {
 			this.setUserBuffer((HashMap<Email, PersistentUser>)
 								this.getUserDbIn().readObject());
 		} catch (IOException e) {
-			e.printStackTrace();
+			this.setMusicBuffer(new HashMap<String, PersistentMusic>());
+			this.setUserBuffer(new HashMap<Email, PersistentUser>());
+
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		
 	}
 
@@ -199,6 +198,14 @@ public class PersistencyHandler {
 		this.musicBuffer = musicBuffer;
 	}
 
-
+	public void readMusicBuffer() {
+		for(String k: this.getMusicBuffer().keySet())
+			System.out.println(k + " " + this.getMusicBuffer().get(k));
+	}
+	
+	public void readUserBuffer() {
+		for(Email e: this.getUserBuffer().keySet())
+			System.out.println(e + " " + this.getUserBuffer().get(e));
+	}
 
 }
