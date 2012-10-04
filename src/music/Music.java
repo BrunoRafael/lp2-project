@@ -19,7 +19,7 @@ import org.jaudiotagger.tag.TagException;
  *
  */
 
-//sdgfdggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+//sdgfdggggggggggggggggggg
 public class Music {
 
 	/**
