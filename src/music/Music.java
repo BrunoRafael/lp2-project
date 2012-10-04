@@ -18,6 +18,8 @@ import org.jaudiotagger.tag.TagException;
  * @author andreluiz
  *
  */
+
+//sdgfdggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 public class Music {
 
 	/**
@@ -190,5 +192,9 @@ public class Music {
 	 */
 	public void setDuration(Number number) {
 		this.duration = number;
+	}
+	
+	public void play(){
+		
 	}
 }
