@@ -1,6 +1,5 @@
 package br.com.radio.music;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

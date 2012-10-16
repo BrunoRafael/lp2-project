@@ -1,5 +1,6 @@
 package br.com.radio.music;
 
+import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,7 +20,12 @@ import org.jaudiotagger.tag.TagException;
  *
  */
 
-public class Music {
+public class Music extends Component{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Song's name.
@@ -80,6 +86,11 @@ public class Music {
 		this.setGenre(tags.getFirst(FieldKey.GENRE));
 		this.setDuration(srcSet.getAudioHeader().getTrackLength());
 	}
+	
+	/**
+	 * Empty constructor of the musics
+	 */
+	public Music(){}
 
 	/**
 	 * 
